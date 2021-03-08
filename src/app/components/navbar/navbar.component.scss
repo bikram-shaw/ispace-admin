@@ -1,0 +1,132 @@
+#sidebar-wrapper {
+  min-height: 100vh;
+  //margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  width: 199px;
+  /* height: 100%; */
+  overflow: hidden;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0 0.5rem;
+  font-size: 1.2rem;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  height: 70px;
+  .img-fluid{
+    height: 65px;
+  }
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+ng-sidebar-container {
+  height: 100vh;
+  width: 200px;
+}
+
+::ng-deep .ng-sidebar {
+  width: 200px;
+  // border-right: 2px solid lightgray;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+
+  a {
+    margin-top: 30px;
+    text-decoration: none;
+    outline: none;
+    border: none;
+
+  }
+}
+
+.content {
+  //margin-top: 30px;
+  //height: fit-content;
+  // background-color: rgb(224, 224, 224);
+  padding: 10px;
+  // padding-bottom: 35px;
+  border-radius: 10px;
+}
+
+.menu-btn {
+  margin: 5px;
+  border: none;
+  outline: none;
+  background-color: #fff;
+
+}
+
+
+.breadcrumb {
+  background-color: white;
+}
+
+.sidebar-top {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  top: 0;
+  left: 0;
+}
+
+.sidebar-body {
+  padding: 0.875rem 1.25rem;
+  
+  .sidebar-item {
+    border: none;
+    outline: none;
+    color: var(--ispace-text-color-deactive);
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    display: block;
+    width: 100%;
+    text-align: start;
+    padding: 12px 0;
+
+    i {
+      width: 22px;
+      height: 23px;
+      color: var(--ispace-icon-color-deactive);
+      padding-right: 11px;
+    }
+  }
+
+  .active {
+    color: #2DDBDB;
+    //background-color:#2DDBDB ;
+    //padding: 5px;
+    // width: 143px;
+    // border-radius: 5px;
+    transition: 0.5s;
+
+    i {
+      color: #2DDBDB;
+    }
+
+  }
+}
+
+.menu-toggle-button{
+  border: none !important;
+  background: #fff;
+  i{
+    color: #8A8A8A;
+  }
+}
+
+.menu-toggle-button:focus{
+  text-decoration: none;
+  box-shadow: none;
+  outline: none;
+}

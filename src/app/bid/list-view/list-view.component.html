@@ -1,0 +1,51 @@
+<div class="container-fluid mt-1">
+  <!-- Bid chart will be implemented Later -->
+
+    <div class="row">
+        <div class="col-4">
+            <h4>Bids</h4>
+        </div>
+        <div class="col-lg-1">
+            <button class="button-save" routerLink='bid-history'>History</button>
+        </div>
+    </div>
+        <div class="row mt-5">
+          <div class="col-lg-12">
+              <table style="width: 100%;"  class="table-sm table hover" datatable [dtOptions]="dtOptions">
+                  <thead class="text-center">
+                      <tr>
+                          <th>Unit Name</th>
+                          <!-- <th>User</th> -->
+                          <th>Project Name</th>
+                          <th>Highest Bid <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                          <th>Bid Placed Date <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                           <th>User</th>
+                         <th></th>
+                      </tr>
+                  </thead>
+
+                  <tbody class="text-center">
+                    <tr *ngFor="let bid of bids">
+                      <td>{{bid.unit_name}}</td>
+                     <td>{{bid.project_name}}</td>
+                     <td>{{bid.bid_amount}}</td>
+                     <td>{{bid.created_on }}</td>
+                     <td>{{bid.user_name }}</td>
+
+                     <!-- <td>
+                      <button class="btn  action-btn"> <i class="fa fa-edit mr-3"></i></button>
+
+                  </td> -->
+                    </tr>
+                    <tr *ngIf="bids?.length == 0">
+                      <td colspan="3" class="no-data-available">No data!</td>
+                  </tr>
+                  </tbody>
+
+
+
+              </table>
+          </div>
+      </div>
+    </div>
+

@@ -1,0 +1,98 @@
+<div class="container-fluid mt-5 ml-3">
+  <form [formGroup]="AddSubsForm" (ngSubmit)="add()">
+<div class="row">
+   <div class="col-sm-8">
+     <!-- Plan Name -->
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Plan Name</label>
+      <div class="col-sm-8">
+        <select (change)="changePlan($event)" formControlName="plan_name" class="form-control form-control-sm" >
+          <option value="">Select Plan</option>
+          <option value="basic">Basic</option>
+          <option value="standard">Standard</option>
+          <option value="premium">Premium</option>
+          </select>
+        <div class="error" *ngIf="isSubmitted && AddSubsFormControl.plan_name.errors?.required">Plan Name Required*</div>
+      </div>
+    </div>
+    <div class="form-group row">
+     <!-- No of bids -->
+     <label for="inputEmail3" class="col-sm-2 col-form-label">No of Bid Unit</label>
+     <div class="col-sm-3">
+       <input type="number" formControlName="no_of_bid" class="form-control" id="inputEmail3" placeholder="No of Bid..">
+       <div class="error" *ngIf="(isSubmitted && AddSubsFormControl.no_of_bid.errors?.required) || (AddSubsFormControl.no_of_bid.errors?.required && AddSubsFormControl.no_of_bid.touched)">No Of Bid Required*</div>
+     </div>
+      <!-- No of book -->
+      <label for="inputEmail3" class="col-sm-2 col-form-label">No of Book Unit</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="no_of_book" class="form-control" id="inputEmail3" placeholder="No of Book..">
+        <div class="error" *ngIf="(isSubmitted && AddSubsFormControl.no_of_book.errors?.required) || (AddSubsFormControl.no_of_book.errors?.required && AddSubsFormControl.no_of_book.touched)">No Of Book Required*</div>
+      </div>
+ </div>
+
+       <!-- Frequency -->
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Frequency</label>
+      <div class="col-sm-3">
+        <select (change)="changeFrequency($event)" formControlName="frequency" class="form-control form-control-sm" >
+          <option value="">Select Frequency</option>
+          <option value="monthly">monthly</option>
+          <option value="yearly">yearly</option>
+          <option value="weekly">weekly</option>
+          </select>
+          <div class="error" *ngIf="isSubmitted && AddSubsFormControl.frequency.errors?.required">
+            Frequency is Required*
+          </div>
+    </div>
+   <!-- Price -->
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Price</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="price" class="form-control" id="inputEmail3" placeholder="Plan Price">
+        <div class="error" *ngIf="(isSubmitted && AddSubsFormControl.price.errors?.required) || (AddSubsFormControl.price.errors?.required && AddSubsFormControl.price.touched)">Price Required*</div>
+      </div>
+  </div>
+   <!-- Status -->
+   <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Status</label>
+    <div class="col-sm-3">
+      <select (change)="changeSubStatus($event)" formControlName="status" class="form-control form-control-sm" >
+        <option value=""> Select Status</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+        </select>
+        <div class="error" *ngIf="isSubmitted && AddSubsFormControl.status.errors?.required">Status is Required*</div>
+  </div>
+ </div>
+
+ <!-- Features -->
+ <div *ngFor="let feature of features; let featureControl of features.controls; let i = index;" class="form-group row">
+  <label for="inputEmail3" class="col-sm-2 col-form-label">Feature {{i+1}}</label>
+  <div class="col-sm-8">
+    <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="feature.value.name" class="form-control" id="inputEmail3" placeholder="Write Feature ...">
+    <div class="error" *ngIf="isSubmitted && !feature.value.name "> Required*</div>
+  </div>
+  <button type="button" (click)="removeFeature(i)" class="buttom-no-bg ml-2  btn-lg" > <i class="fa fa-trash text-danger fa-1x"></i></button>
+</div>
+
+<div class="row mb-5">
+
+  <div class="col-sm-10">
+      <button type="button" (click)="addFeature()" class=" btn btn-link float-sm-right "> <i class="fas fa-plus-circle">Add More Features </i> </button>
+
+  </div>
+</div>
+
+<div class="row mt-4 mb-5">
+
+  <div class="col-sm-10">
+      <button type="submit"  class="button-save float-sm-right ">Save</button>
+
+  </div>
+</div>
+
+</div>
+</div>
+
+
+  </form>
+</div>

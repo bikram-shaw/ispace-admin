@@ -1,0 +1,41 @@
+.img-preview
+{
+
+  border: 1px solid wheat;
+  border-radius: 5px;
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  object-fit: cover;
+
+}
+.img_container
+{
+  position: relative;
+}
+.image_remove
+{
+  color:white;
+  font-weight: 600;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: rgba(230, 59, 16, 0.979);
+  border: 1px solid white;
+  border-radius: 20px;
+
+}
+.image_crop
+{
+  color:white;
+  font-weight: 600;
+  position: absolute;
+  top: 98px;
+  right:6px;
+  background-color: rgba(178, 180, 180, 0.295);
+  border: 2px solid white;
+
+
+
+}

@@ -1,0 +1,313 @@
+<div class="container-fluid">
+  <Form [formGroup]="addUnitForm" (ngSubmit)="saveData()">
+    <div class="row " >
+           <!--  Downloat template for bulk upload button -->
+
+           <div class="col-lg-12 ">
+            <div  class=" float-right btn-sm"><span style="font-size: 17px; font-weight: 300"> Download Template For Bulk Upload </span><i
+                    class="fa fa-file-excel"></i><button type="button" class="buttom-no-bg ml-3"><i class="fa fa-download "></i></button></div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group row ">
+                <span class="ml-3 span-header-1" for="inputEmail3" *ngIf="id == ''">Add New Unit</span>
+                <span class="ml-3 span-header-1" for="inputEmail3" *ngIf="id != ''">Edit Unit</span>
+
+              <!-- Bulk Upload Button -->
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-info btn-sm"> Bulk Upload <i class="fa fa-file-upload"></i></button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Basic Information -->
+  <accordion isAnimated="true">
+      <accordion-group isOpen="true"  (click)="toggle(1)">
+          <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+              <div class="pull-left float-left">Basic Information</div>
+              <i *ngIf="accordion[0].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+              <i *ngIf="!accordion[0].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+          </button>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="mt-5">
+              <!-- Project Name -->
+              <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Project Name</label>
+                <div class="col-sm-3">
+
+
+                    <select (change)="changeProjectName($event)" formControlName="project_name" class="form-control form-control-sm">
+                       <option value="">Select Project</option>
+                        <option *ngFor="let result of searchProjectResult" value={{result.project_name}}>{{result.project_name}}</option>
+                    </select>
+                     <!-- error block -->
+                     <div class="error" *ngIf="isSubmitted && addUnitFormControl.project_name.errors?.required">
+                      Please Select Project*
+                     </div>
+                </div>
+              </div>
+
+              <!-- Name/Id Part -->
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"> Unit Name/Id</label>
+                    <div class="col-sm-3">
+                        <input type="text" formControlName="unit_name" class="form-control form-control-sm" placeholder="">
+                        <span class="error" *ngIf="(isSubmitted && addUnitFormControl.unit_name.errors?.required ) || (addUnitFormControl.unit_name.errors?.required && addUnitFormControl.unit_name.touched)"> Unit Name/Id is Required*</span>
+
+                    </div>
+                </div>
+                <!-- Description Part -->
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-6">
+                        <textarea type="text" rows='3' formControlName="description" class="form-control form-control-sm" placeholder=""></textarea>
+                        <span class="error" *ngIf="(isSubmitted && addUnitFormControl.description.errors?.required) || (addUnitFormControl.description.errors?.required && addUnitFormControl.description.touched)">Description Required*</span>
+                    </div>
+                </div>
+                   <!-- Upload Images -->
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Upload Images</label>
+                    <div class="col-sm-8">
+                      <div class="row " >
+                        <!-- formArrayName="unit_image"
+                        let image of unit_image.controls; -->
+                        <!-- [formGroupName]="i"  -->
+                        <div  *ngFor="let file of myFiles let i = index;">
+                          <div class="img_container">
+                          <img class="img-preview"  [src]="urls[i]" height="120px" width="130px" ><button (click)="removeImage(i)" type="button" class="image_remove">x</button>
+                          <button (click)="openImageCropperComponent(i)" type="button" class="image_crop"><i class="fas fa-crop"></i></button>  <br/>
+                           <input class="ml-1 mt-1"  (change)="selectPrimaryImage(i,$event)" [ngModelOptions]="{standalone: true}" [(ngModel)]="myFiles[i].isChecked" type="checkbox"/><small class="text-monospace ml-1 mt-1">Make Primary</small>
+                        </div>
+                      </div>
+                      </div>
+                        <div class="col-sm-6">
+                         <div class="row " >
+                          <label for="imgeip" class="btn card">Select Images</label>
+                          <span id="noOfFile" class="m-2 text-justify">No Images Choosen</span>
+                          <div class="error" *ngIf="(isSubmitted && urls.length==0) || (fileInputTouched==true && urls.length==0)">File is required.</div>
+                        </div>
+                         <input   class="form-control" id="imgeip" style="visibility:hidden;" type="file" multiple (change)="onChange($event)" (click)="makeFileInputTouched()" accept="image/*">
+
+                       </div>
+
+
+                    </div>
+                </div>
+                <!-- Unit Status -->
+                <div class="form-group row">
+
+                    <label for="inputEmail3" class="col-sm-2 ">Unit Status</label>
+                    <div class="col-sm-2">
+                      <select (change)="changeUnitStatus($event)" formControlName="status" class="form-control form-control-sm">
+                        <option value="">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">InActive</option>
+                        <option value="Booked">Booked</option>
+                        <option value="Sold">Sold</option>
+
+
+                    </select>
+                        <!-- error block -->
+                        <div class="error" *ngIf="isSubmitted && addUnitFormControl.status.errors?.required">
+                          Please Select Unit Status*
+                         </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    </accordion-group>
+    <accordion-group (click)="toggle(2)">
+      <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+          <div class="pull-left float-left">Unit Specification</div>
+          <i *ngIf="accordion[1].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+          <i *ngIf="!accordion[1].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+      </button>
+
+
+    <div class="form-group row mt-5">
+        <!-- Unit Type -->
+        <label for="inputEmail3" class="col-sm-2 ">Unit Type</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="unit_type" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.unit_type.errors?.required) || (addUnitFormControl.unit_type.errors?.required && addUnitFormControl.unit_type.touched)">Unit Type is Required*</div>
+        </div>
+      <!-- Total Area -->
+        <label for="inputEmail3" class="col-sm-2 ">Total Area(SqFt)</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="total_area" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.total_area.errors?.required) || (addUnitFormControl.total_area.errors?.required && addUnitFormControl.total_area.touched)">Total Area is Required*</div>
+        </div>
+    </div>
+
+    <div class="form-group row ">
+    <!-- Unit At -->
+        <label for="inputEmail3" class="col-sm-2 ">Unit At</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="unit_at" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.unit_at.errors?.required) || (addUnitFormControl.unit_at.errors?.required &&  addUnitFormControl.unit_at.touched)">Unit At is Required*</div>
+        </div>
+        <!-- Parking Type -->
+        <label for="inputEmail3" class="col-sm-2 ">Parking Type</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="parking_type" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.parking_type.errors?.required) ||  (addUnitFormControl.parking_type.errors?.required && addUnitFormControl.parking_type.touched)">Parking Type is Required*</div>
+        </div>
+    </div>
+
+    <div class="form-group row ">
+        <!-- Exposure -->
+        <label for="inputEmail3" class="col-sm-2 ">Exposure</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="exposure" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.exposure.errors?.required) || (addUnitFormControl.exposure.errors?.required &&  addUnitFormControl.exposure.touched)">Exposure is Required*</div>
+        </div>
+          <!-- Parking -->
+        <label for="inputEmail3" class="col-sm-2 ">Parking</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="parking" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.parking.errors?.required) || (addUnitFormControl.parking.errors?.required &&  addUnitFormControl.parking.touched)">Parking is Required*</div>
+        </div>
+    </div>
+    <div class="form-group row ">
+      <!-- Outdoor Space -->
+        <label for="inputEmail3" class="col-sm-2 ">Outdoor Space(SqFt)</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="outdoor_space" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.outdoor_space.errors?.required) || (addUnitFormControl.outdoor_space.errors?.required &&  addUnitFormControl.outdoor_space.touched)">Outdoor Space is Required*</div>
+        </div>
+        <!-- Balcony View -->
+        <label for="inputEmail3" class="col-sm-2 ">Balcony View</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="balcony_view" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.balcony_view.errors?.required) || (addUnitFormControl.balcony_view.errors?.required &&  addUnitFormControl.balcony_view.touched)">Balcony View is Required*</div>
+        </div>
+    </div>
+    <div class="form-group row ">
+      <!-- Carpet Area -->
+        <label for="inputEmail3" class="col-sm-2 ">Carpet Area(SqFt)</label>
+        <div class="col-sm-2">
+            <input type="text" formControlName="carpet_area" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.carpet_area.errors?.required) || (addUnitFormControl.carpet_area.errors?.required &&  addUnitFormControl.carpet_area.touched)">Carpet Area is Required*</div>
+        </div>
+        <!-- Price Per SqFt -->
+        <label for="inputEmail3" class="col-sm-2 ">Price Per SqFt</label>
+        <div class="col-sm-2">
+            <input type="number" formControlName="price_per_sq_ft" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.price_per_sq_ft.errors?.required) || (addUnitFormControl.price_per_sq_ft.errors?.required &&  addUnitFormControl.price_per_sq_ft.touched)"> Price Per SqFt is Required*</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <table class="table ">
+                <thead class="text-center thead-dark ">
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Features</th>
+
+
+                    </tr>
+                </thead>
+                <tbody formArrayName="unit_room">
+
+                   <tr *ngFor="let room of unit_room let roomControl of unit_room.controls let i = index;" >
+                      <td >
+                      <input  [ngModelOptions]="{standalone: true}"  [(ngModel)]="room.value.name"  class="form-control form-control-sm" type="text" placeholder="name"/>
+                      <div class="error" *ngIf="isSubmitted && !room.value.name "> Required*</div>
+                      </td>
+                      <td>
+                        <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="room.value.size" class="form-control form-control-sm" type="text" placeholder="size"/>
+                        <div class="error" *ngIf="isSubmitted && !room.value.size"> Required*</div>
+                      </td>
+                      <td>
+                        <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="room.value.features" class="form-control form-control-sm" type='text' placeholder="features"/>
+                        <div class="error" *ngIf="isSubmitted && !room.value.features"> Required*</div>
+                      </td>
+                      <td >
+                        <button type="button" (click)="deleteRow(i)" class="buttom-no-bg ml-3  btn-lg" > <i class="fa fa-trash text-danger fa-1x"></i></button>
+                      </td>
+                   </tr>
+
+
+                </tbody>
+            </table>
+            <button (click)="addRow()" type="button" class="btn btn-success btn-sm float-right" ><i class="fa fa-plus-circle"></i> Add
+                Room</button>
+        </div>
+    </div>
+</accordion-group>
+
+<accordion-group (click)="toggle(3)">
+  <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+      <div class="pull-left float-left">Bid And Booking</div>
+      <i *ngIf="accordion[1].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+      <i *ngIf="!accordion[1].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+  </button>
+    <div class="form-group row mt-5 ">
+      <!-- Min. Bidding Amt -->
+      <label for="inputEmail3" class="col-sm-2 ">Starting Bid Amt.</label>
+      <div class="col-sm-2">
+          <input type="number" min="0" formControlName="min_bid_price" class="form-control form-control-sm" placeholder="">
+          <div class="error" *ngIf="(isSubmitted && addUnitFormControl.min_bid_price.errors?.required) ||  (addUnitFormControl.min_bid_price.errors?.required && addUnitFormControl.min_bid_price.touched)"> Min. Bidding Amt is Required*</div>
+      </div>
+        <!-- Booking Amount -->
+        <label for="inputEmail3" class="col-sm-2 ">Book It Now Price</label>
+        <div class="col-sm-2">
+            <input type="number" min="0" formControlName="booking_price" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.booking_price.errors?.required) || (addUnitFormControl.booking_price.errors?.required && addUnitFormControl.booking_price.touched)"> Booking Amount is Required*</div>
+        </div>
+    </div>
+
+    <div class="form-group row ">
+      <!-- Bidding Start Date -->
+        <label for="inputEmail3" class="col-sm-2 ">Bid Start Date</label>
+        <div class="col-sm-2">
+            <input type="date" formControlName="bid_start_date" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.bid_start_date.errors?.required) || (addUnitFormControl.bid_start_date.errors?.required && addUnitFormControl.bid_start_date.touched)"> Bidding Start Date is Required*</div>
+        </div>
+        <!-- Bidding End Date -->
+        <label for="inputEmail3" class="col-sm-2 ">Bid End Date</label>
+        <div class="col-sm-2">
+            <input type="date" formControlName="bid_end_date" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.bid_end_date.errors?.required) || (addUnitFormControl.bid_end_date.errors?.required && addUnitFormControl.bid_end_date.touched)"> Bidding End Date is Required*</div>
+        </div>
+    </div>
+    <div class="form-group row ">
+
+        <!-- Bidding Amt Increse -->
+        <label for="inputEmail3" class="col-sm-2 ">Bid Amt. Interval</label>
+        <div class="col-sm-2">
+            <input type="number" min="0" formControlName="bid_step" class="form-control form-control-sm" placeholder="">
+            <div class="error" *ngIf="(isSubmitted && addUnitFormControl.bid_step.errors?.required) || (addUnitFormControl.bid_step.errors?.required &&  addUnitFormControl.bid_step.touched)"> Bidding Amt Increse is Required*</div>
+        </div>
+    </div>
+    </accordion-group>
+    </accordion>
+    <div class="row mt-5 mb-5">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-5 text-right">
+            <button type="button" class="button-cancel mr-3">Cancel</button>
+            <!--button type="submit" [disabled]="addUnitForm.invalid" class="button-saveAndAnother mr-3">Save & Add Another</button-->
+            <button type="submit"  class="button-save">Save</button>
+        </div>
+    </div>
+  </Form>
+
+</div>
+ <ngx-loading [show]="loading"  [config]="{fullScreenBackdrop: true, primaryColour: '#ffffff', secondaryColour: '#ccc', tertiaryColour: '#fff',backdropBorderRadius: '3px', height:'1000vh'}" [template]="loadingTemplate" ></ngx-loading>
+

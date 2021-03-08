@@ -1,0 +1,234 @@
+<accordion isAnimated="true">
+  <accordion-group isOpen="true"  (click)="toggle(1)">
+    <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+        <div class="pull-left float-left">Profile</div>
+        <i *ngIf="accordion[0].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+        <i *ngIf="!accordion[0].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+    </button>
+    <div class="container mt-5">
+      <form [formGroup]="addUserForm" (ngSubmit)="updateUser()">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">User Name</label>
+              <div class="col-sm-5">
+                  <input type="text" formControlName="name" class="form-control form-control-sm"
+                      placeholder="name...">
+                  <div class="error"
+                      *ngIf=" (isSubmitted && addUserFormControl.name.errors?.required) || (addUserFormControl.name.errors?.required &&  addUserFormControl.name.touched)">
+                      Required*</div>
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-5">
+                <textarea type="text" formControlName="address" class="form-control form-control-sm"
+                    placeholder="name..."></textarea>
+                <div class="error"
+                    *ngIf=" (isSubmitted && addUserFormControl.address.errors?.required) || (addUserFormControl.address.errors?.required &&  addUserFormControl.address.touched)">
+                    Required*</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Mobile</label>
+          <div class="col-sm-5">
+              <input type="number" formControlName="mobile" class="form-control form-control-sm"
+                  placeholder="phone number...">
+              <div class="error"
+                  *ngIf=" (isSubmitted && addUserFormControl.mobile.errors?.required) || (addUserFormControl.mobile.errors?.required &&  addUserFormControl.mobile.touched)">
+                  Required*</div>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-5">
+            <input type="text" formControlName="email" class="form-control form-control-sm"
+                placeholder="mail id...">
+            <div class="error"
+                *ngIf=" (isSubmitted && addUserFormControl.email.errors?.required) || (addUserFormControl.email.errors?.required &&  addUserFormControl.email.touched)">
+                Required*</div>
+        </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-5">
+          <input type="password" formControlName="password" class="form-control form-control-sm"
+              placeholder="">
+          <div class="error"
+              *ngIf=" (isSubmitted && addUserFormControl.password.errors?.required) || (addUserFormControl.password.errors?.required &&  addUserFormControl.password.touched)">
+              Required*</div>
+      </div>
+    </div>
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="text-right">
+                <button class="button-save">Update</button>
+              </div>
+            </div>
+          </div>
+            </div>
+        </div>
+        </form>
+      </div>
+    </accordion-group>
+    <accordion-group   (click)="toggle(2)">
+      <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+          <div class="pull-left float-left">Bid History</div>
+          <i *ngIf="accordion[1].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+          <i *ngIf="!accordion[1].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+      </button>
+      <div class="row mt-5">
+        <div class="col-lg-12">
+            <table style="width: 100%;" class=" table  table-sm  hover" datatable  [dtOptions]="dtOptions1">
+                <thead >
+                    <tr>
+                        <th>Unit Id/Name</th>
+                        <th>Project Name</th>
+                        <th>Bid Amount <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                        <th> Bid Placed Date<i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+
+                    </tr>
+                </thead>
+
+                <tbody  >
+                  <tr *ngFor="let bidHistory of bidHistorys">
+                    <td>{{bidHistory.unit_id}}</td>
+                   <td>{{bidHistory.project_name}}</td>
+                   <td>{{bidHistory.bid_amount}}</td>
+                   <td>{{bidHistory.bid_placed_date}}</td>
+
+                  </tr>
+                  <tr *ngIf="bidHistorys?.length == 0">
+                    <td colspan="3" class="no-data-available">No data!</td>
+                </tr>
+                </tbody>
+
+
+
+            </table>
+        </div>
+    </div>
+      </accordion-group>
+      <accordion-group   (click)="toggle(3)">
+        <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+            <div class="pull-left float-left">Booking History</div>
+            <i *ngIf="accordion[2].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+            <i *ngIf="!accordion[2].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+        </button>
+        <div class="row mt-5">
+          <div class="col-lg-12">
+              <table style="width: 100%;" class=" table  table-sm  hover" datatable  [dtOptions]="dtOptions2">
+                  <thead >
+                      <tr>
+                          <th>Unit Id/Name</th>
+                          <th>Project Name</th>
+                          <th>Booked Amount <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                          <th> Booking Date<i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+
+                      </tr>
+                  </thead>
+
+                  <tbody  >
+                    <tr *ngFor="let bookHistory of bookingHistorys">
+                      <td>{{bookHistory.unit_id}}</td>
+                     <td>{{bookHistory.project_name}}</td>
+                     <td>{{bookHistory.book_amount}}</td>
+                     <td>{{bookHistory.book_placed_date}}</td>
+
+                    </tr>
+                    <tr *ngIf="bookingHistorys?.length == 0">
+                      <td colspan="3" class="no-data-available">No data!</td>
+                  </tr>
+                  </tbody>
+
+
+
+              </table>
+          </div>
+      </div>
+        </accordion-group>
+        <accordion-group   (click)="toggle(4)">
+          <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+              <div class="pull-left float-left">Transaction History</div>
+              <i *ngIf="accordion[3].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+              <i *ngIf="!accordion[3].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+          </button>
+
+          <div class="row mt-5">
+            <div class="col-lg-12">
+                <table style="width: 100%;" class=" table  table-sm  hover" datatable  [dtOptions]="dtOptions3">
+                    <thead >
+                        <tr>
+                            <th>Transaction Id</th>
+                            <th>Project Name</th>
+                            <th>Unit Name/Id</th>
+                            <th>Amount <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                            <th>Date<i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody  >
+                      <tr *ngFor="let transactionHistory of transactionHistorys">
+                        <td>{{transactionHistory.transaction_id}}</td>
+                       <td>{{transactionHistory.project_name}}</td>
+                       <td>{{transactionHistory.unit_name}}</td>
+                       <td>{{transactionHistory.amount}}</td>
+                       <td>{{transactionHistory.date}}</td>
+
+                      </tr>
+                      <tr *ngIf="bookingHistorys?.length == 0">
+                        <td colspan="3" class="no-data-available">No data!</td>
+                    </tr>
+                    </tbody>
+
+
+
+                </table>
+            </div>
+        </div>
+          </accordion-group>
+          <accordion-group   (click)="toggle(5)">
+            <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                <div class="pull-left float-left">Subscription History</div>
+                <i *ngIf="accordion[4].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+                <i *ngIf="!accordion[4].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+            </button>
+            <div class="row mt-5">
+              <div class="col-lg-12">
+                  <table style="width: 100%;" class=" table  table-sm  hover" datatable  [dtOptions]="dtOptions4">
+                      <thead >
+                          <tr>
+                              <th>Plan Name</th>
+                              <th>Start Date</th>
+                              <th>End date</th>
+                              <th>Amount <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                              <th>Status<i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+
+                          </tr>
+                      </thead>
+
+                      <tbody  >
+                        <tr *ngFor="let sub of subs">
+                          <td>{{sub.plan_name}}</td>
+                         <td>{{sub.start_date}}</td>
+                         <td>{{sub.end_date}}</td>
+                         <td>{{sub.amount}}</td>
+                         <td>{{sub.status}}</td>
+
+                        </tr>
+                        <tr *ngIf="bookingHistorys?.length == 0">
+                          <td colspan="3" class="no-data-available">No data!</td>
+                      </tr>
+                      </tbody>
+
+
+
+                  </table>
+              </div>
+          </div>
+            </accordion-group>
+  </accordion>

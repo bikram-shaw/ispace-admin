@@ -1,0 +1,344 @@
+<div class="container mt-1">
+    <form [formGroup]="editProjectForm" (ngSubmit)="save()">
+
+        <!-- Select Client  -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group row ">
+                    <span class="ml-3 span-header-1">{{project_name}}</span>
+                    <!--div class="col-sm-4">
+
+                      <select  (change)="changeClient($event)" formControlName="selectClient" class="form-control form-control-sm" >
+                        <option value="">Select Client</option>
+                        <option value="1">Mark</option>
+                        <option value="2">Pitter</option>
+                        <option value="3">Sinzo</option>
+                    </select>
+                     <div class="error" *ngIf="isSubmitted && editProjectFormControl.selectClient.errors?.required">
+                      Please enter your city*
+                    </div>
+                  </div-->
+                </div>
+            </div>
+        </div>
+        <accordion isAnimated="true">
+            <accordion-group isOpen="true"  (click)="toggle(1)">
+                <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                    <div class="pull-left float-left">Basic Info</div>
+                    <i *ngIf="!accordion[0].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+                    <i *ngIf="accordion[0].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+                </button>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Developer</label>
+                            <div class="col-sm-9">
+                                <input type="text" formControlName="developer" class="form-control form-control-sm"
+                                    placeholder="Developer">
+                                <div class="error"
+                                    *ngIf=" (isSubmitted && editProjectFormControl.developer.errors?.required) || (editProjectFormControl.developer.errors?.required &&  editProjectFormControl.developer.touched)">
+                                    Required*</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" formControlName="project_name" class="form-control form-control-sm"
+                                    placeholder="Name">
+                                <div class="error"
+                                    *ngIf=" (isSubmitted && editProjectFormControl.project_name.errors?.required) || (editProjectFormControl.project_name.errors?.required &&  editProjectFormControl.project_name.touched)">
+                                    Name is Required*</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Address</label>
+                            <div class="col-sm-9">
+                                <input type="text" formControlName="address" class="form-control form-control-sm"
+                                    placeholder="Address">
+                                <div class="error"
+                                    *ngIf=" (isSubmitted && editProjectFormControl.address.errors?.required ) || (editProjectFormControl.address.errors?.required &&  editProjectFormControl.address.touched)">
+                                    Address is Required*</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"></label>
+                          <div class="col-sm-9">
+                              <input type="text" formControlName="landmark" class="form-control form-control-sm"
+                                  placeholder="Landmark...">
+
+                          </div>
+                      </div>
+                        <div class="form-group row">
+                            <span class="col-sm-3"></span>
+                            <div class="col-sm-3">
+                                <input type="text" formControlName="city" class="form-control form-control-sm"
+                                    placeholder="City">
+                                <!-- error block -->
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.city.errors?.required) || (editProjectFormControl.city.errors?.required &&  editProjectFormControl.city.touched)">
+                                    Please enter your city*
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" formControlName="state" class="form-control form-control-sm"
+                                    placeholder="State">
+                                <!-- error block -->
+
+                                <!-- error block -->
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.state.errors?.required) || (editProjectFormControl.state.errors?.required &&  editProjectFormControl.state.touched)">
+                                    Please enter your state*
+                                </div>
+                            </div>
+                            <!-- Zip code -->
+                            <div class="col-sm-3">
+                                <input type="number" min="0" formControlName="pin" class="form-control form-control-sm"
+                                    placeholder="Zip">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.pin.errors?.required) || (editProjectFormControl.pin.errors?.required  && editProjectFormControl.pin.touched)">Zip
+                                    Code is Required*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Project Description</label>
+                          <div class="col-sm-9">
+                              <textarea type="text" formControlName="description" class="form-control form-control-sm"
+                                  placeholder="Description.."></textarea>
+
+                          </div>
+                      </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Image</label>
+                            </div>
+                            <!--div class="col-sm-3">
+                                <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                                (fileOver)="fileOverBase($event)"
+                                [uploader]="uploader" class="well my-drop-zone"></div>
+                            </div-->
+                            <div class="col-sm-9">
+                              <div class="img_container mb-1">
+                                <img class="img-preview"  [src]="url[0]" height="120px" width="130px" >
+                              </div>
+                              <div class="row ml-2 mt-2">
+                                <label for="imgeip" class="btn card px-3">Replace Image</label>
+                              </div>
+                                <input formControlName="file" id="imgeip" style="visibility:hidden;" type="file" accept="image/*" class="form-control" (change)="onChange($event)">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Location</label>
+                            <div class="col-sm-5">
+                                <input type="text" id="placeName" formControlName="google_location" class="form-control form-control-sm" placeholder="">
+                                <span class="error" *ngIf="(isSubmitted &&  editProjectFormControl.google_location.errors?.required) || (editProjectFormControl.google_location.errors?.required && editProjectFormControl.google_location.touched)">Map Location is Required*</span>
+                            </div>
+                            <button type="button" class="buttom-no-bg col-sm-1" (click)="openModalWithComponent()">  <u>Click Here</u></button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </accordion-group>
+            <accordion-group (click)="toggle(2)">
+                <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                    <div class="pull-left float-left">Contact Info</div>
+                    <i *ngIf="!accordion[1].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+                    <i *ngIf="accordion[1].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+                </button>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Mobile-1 -->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Mobile</label>
+                            <div class="col-sm-9">
+                                <input type="number" min="0" formControlName="mobile" class="form-control form-control-sm"
+                                    placeholder="Mob1. #">
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.mobile.errors?.required) || (editProjectFormControl.mobile.errors?.required && editProjectFormControl.mobile.touched)">
+                                    Mobile No is Required*</div>
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.mobile.errors?.pattern) || (editProjectFormControl.mobile.errors?.pattern && editProjectFormControl.mobile.touched)">
+                                    Invalid Mobile No.</div>
+                            </div>
+                        </div>
+                        <!-- Mobile2 -->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"> Alternative Mobile</label>
+                            <div class="col-sm-9">
+                                <input type="number" min="0" formControlName="mobile_alt" class="form-control form-control-sm"
+                                    placeholder="Mob2. #">
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.mobile_alt.errors?.pattern) || (editProjectFormControl.mobile_alt.errors?.pattern && editProjectFormControl.mobile_alt.touched)">
+                                    Invalid Mobile No.</div>
+                            </div>
+                        </div>
+                        <!-- Email-1 -->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" formControlName="email" class="form-control form-control-sm"
+                                    placeholder="Email">
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.email.errors?.required) || (editProjectFormControl.email.errors?.required && editProjectFormControl.email.touched)">
+                                    Email is Required*</div>
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.email.errors?.pattern)  || (editProjectFormControl.email.errors?.pattern && editProjectFormControl.email.touched)">
+                                    Invalid Email</div>
+                            </div>
+                        </div>
+                        <!-- Email-2 -->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Alternative Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" formControlName="email_alt" class="form-control form-control-sm"
+                                    placeholder="Email 2">
+                                <div class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.email_alt.errors?.pattern)  || (editProjectFormControl.email_alt.errors?.pattern && editProjectFormControl.email_alt.touched)">
+                                    Invalid Email</div>
+                            </div>
+                        </div>
+                        <!-- Contact Person Name2 -->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Contact Person Name 1</label>
+                            <div class="col-sm-9">
+                                <input type="text" formControlName="contact_person" class="form-control form-control-sm"
+                                    placeholder="Contact Person Name">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.contact_person.errors?.required) || (editProjectFormControl.contact_person.errors?.required && editProjectFormControl.contact_person.touched)">Contact
+                                    Person Name is Required*</span>
+                            </div>
+                        </div>
+                        <!-- Contact Person Name1 -->
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Contact Person Name 2</label>
+                            <div class="col-sm-9">
+                                <input type="text" formControlName="contact_person_alt"
+                                    class="form-control form-control-sm" placeholder="Contact Person Name">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </accordion-group>
+            <accordion-group (click)="toggle(3)">
+                <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                    <div class="pull-left float-left">Project Info</div>
+                    <i *ngIf="!accordion[2].isOpen" class="fa fa-angle-double-up  float-right pull-right"></i>
+                    <i *ngIf="accordion[2].isOpen" class="fa fa-angle-double-down  float-right pull-right"></i>
+                </button>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group row">
+                            <!-- Const. Status -->
+                            <label class="col-sm-3 ">Const. Status</label>
+                            <div class="col-sm-3">
+                                <input type="text" formControlName="construction_status"
+                                    class="form-control form-control-sm" placeholder="Const. Status">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.construction_status.errors?.required) || (editProjectFormControl.construction_status.errors?.required && editProjectFormControl.construction_status.touched)">Const.
+                                    Status is Required*</span>
+                            </div>
+                            <!-- Est. Completion -->
+                            <label class="col-sm-3 ">Est. Completion</label>
+                            <div class="col-sm-3">
+                                <input type="date" formControlName="estimated_completion"
+                                    class="form-control form-control-sm" placeholder="Est. Completion">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.estimated_completion.errors?.required ) || (editProjectFormControl.estimated_completion.errors?.required  && editProjectFormControl.estimated_completion.touched)">Est.
+                                    Completion is Required*</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Building Type -->
+                            <label class="col-sm-3 ">Building Type</label>
+                            <div class="col-sm-3">
+                                <input type="text" formControlName="building_type" class="form-control form-control-sm"
+                                    placeholder="Building Type">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.building_type.errors?.required) || (editProjectFormControl.building_type.errors?.required && editProjectFormControl.building_type.touched)">Building
+                                    Type is Required*</span>
+                            </div>
+                            <!-- Storeys -->
+                            <label class="col-sm-3 ">Storeys</label>
+                            <div class="col-sm-3">
+                                <input type="number" min="0" formControlName="storeys" class="form-control form-control-sm"
+                                    placeholder="Storeys">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.storeys.errors?.required) || (editProjectFormControl.storeys.errors?.required && editProjectFormControl.storeys.touched)">Storeys
+                                    is Required*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <!-- No. Of Units -->
+                            <label class="col-sm-3 ">No. of Units</label>
+                            <div class="col-sm-3">
+                                <input type="number" min="0" formControlName="no_of_units" class="form-control form-control-sm"
+                                    placeholder="No. Of Units">
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.no_of_units.errors?.required) || (editProjectFormControl.no_of_units.errors?.required && editProjectFormControl.no_of_units.touched)">No.
+                                    of Units is Required*</span>
+                            </div>
+                            <!-- Parking -->
+                            <label class="col-sm-3 ">Parking</label>
+                            <div class="col-sm-3">
+                              <select  formControlName="parking" class="form-control form-control-sm">
+                                <option value="">Select Parking</option>
+                                <option value="active">Yes</option>
+                                <option value="inactive">No</option>
+                            </select>
+                                <span class="error"
+                                    *ngIf="(isSubmitted && editProjectFormControl.parking.errors?.required) || (editProjectFormControl.parking.errors?.required && editProjectFormControl.parking.touched)">Parking
+                                    is Required*</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Architects -->
+                            <label class="col-sm-3 ">Architects</label>
+                            <div class="col-sm-6">
+                                <input type="text" formControlName="architects" class="form-control form-control-sm"
+                                    placeholder="Architects">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <!-- Interior Designers -->
+                            <label class="col-sm-3 ">Interior Designers</label>
+                            <div class="col-sm-6">
+                                <input type="text" formControlName="interior_designer"
+                                    class="form-control form-control-sm" placeholder="Interior Designers">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+
+
+        <div class="form-group row mb-5">
+            <div class="col-sm-12">
+                <div class="float-right">
+                    <button type="button" class="button-cancel" routerLink="/projects">Cancel</button>
+                    <button [disabled]="loading" type="submit" class="button-save">
+
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+<ngx-loading [show]="loading"  [config]="{fullScreenBackdrop: true, primaryColour: '#ffffff', secondaryColour: '#ccc', tertiaryColour: '#fff',backdropBorderRadius: '3px', height:'1000vh'}" [template]="loadingTemplate" ></ngx-loading>

@@ -1,0 +1,50 @@
+<div class="container-fluid mt-2">
+  <div class="row">
+      <div class="col-4">
+          <h4>Units</h4>
+      </div>
+      <div class="col-8">
+          <button class="button-save" routerLink='new'>Add</button>
+      </div>
+
+  </div>
+  <div class="row mt-5">
+      <div class="col-lg-12">
+          <table style="width: 100%;" class=" table  table-sm  hover" datatable [dtOptions]="dtOptions">
+              <thead >
+                  <tr>
+                      <th>Unit Name/Id</th>
+                      <!--th>Developer Name</th-->
+                      <th>Project Name</th>
+                      <th>Status <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                      <th>Bid End Date <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                      <th class="text-center">Action Items</th>
+                  </tr>
+              </thead>
+
+              <tbody  >
+                <tr *ngFor="let unit of units">
+                  <td>{{unit.unit_name}}</td>
+                 <td>{{unit.project_name}}</td>
+                 <td>{{unit.status}}</td>
+                 <td>{{unit.bid_end_date }}</td>
+                 <td class="text-center" style="width: 25%;">
+                  <button class="btn  action-btn"  popover="View" triggers="mouseenter:mouseleave"> <i class="fa fa-eye "></i></button>
+                  <button class="btn  action-btn" popover="Edit" triggers="mouseenter:mouseleave" routerLink="edit/{{unit.id}}/{{unit.unit_name}}"> <i class="fa fa-edit mr-3"></i></button>
+                  <button class="btn action-btn" popover="Bids History" triggers="mouseenter:mouseleave" routerLink="bid_history/{{unit.id}}/{{unit.unit_name}}"><i class="fa fa-clipboard-list "></i></button>
+                  <button class="btn action-btn" popover="Booking History" triggers="mouseenter:mouseleave" ><i class="fas fa-user-check"></i></button>
+                  <button class="btn action-btn" popover="Publish" triggers="mouseenter:mouseleave" ><i class="fas fa-upload "></i></button>
+
+              </td>
+                </tr>
+                <tr *ngIf="units?.length == 0">
+                  <td colspan="3" class="no-data-available">No data!</td>
+              </tr>
+              </tbody>
+
+
+
+          </table>
+      </div>
+  </div>
+</div>

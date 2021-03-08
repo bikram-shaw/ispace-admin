@@ -1,0 +1,184 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+/* Font Family */
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+@import 'variables';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.action-btn {
+  margin-right: 7px;
+  padding: none;
+  width: 40px;
+  color: gray;
+
+  box-shadow: none !important;
+
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  width: 80%;
+  font-weight: bold;
+  color: gray;
+  font-size: 12px;
+}
+
+.separator::before {
+  content: '';
+  flex: 1;
+  border-bottom: 3px solid gray;
+  border-style: dashed;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.separator::before {
+  margin-right: .25em;
+}
+
+.dataTables_empty {
+  display: none;
+}
+
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+.mt-1 {
+  margin-top: 20px !important;
+}
+
+@media (min-width: 768px) {
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+}
+
+button{
+  border: none !important;
+  outline: none !important;
+}
+
+button:focus{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.button-save {
+
+  width: 100px;
+  height: 33px;
+  background: rgb(255, 174, 0);
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 15px;
+
+}
+
+.button-cancel {
+  margin: 20px;
+  width: 100px;
+  height: 33px;
+  background: #C4C4C4;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.button-cancel:hover {
+  background-color: rgb(167, 167, 167);
+}
+
+.span-header-1 {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.buttom-no-bg {
+  background-color: #fff;
+  border: 0px;
+  padding: 0;
+  outline: none;
+  margin: 0;
+  font-size: small;
+
+}
+
+.buttom-no-bg:active {
+  border-style: outset;
+}
+
+/* Dotted border */
+hr.dotted {
+  border-top: 3px dotted #bbb;
+}
+
+
+.error {
+  color: red;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.button-save[disabled] {
+
+  background-color: rgb(238, 204, 137);
+  border: rgb(238, 204, 137)solid 1px;
+}
+
+.button-save:hover {
+  background-color: rgb(255, 154, 0);
+}
+
+.button-save:hover[disabled] {
+  background-color: rgb(238, 204, 137);
+}
+
+
+
+.button-save:hover {
+  background-color: rgb(255, 154, 0);
+}
+.customClassPopover
+{
+  background-color: black;
+  color: red;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+
+accordion-group{
+  margin: 10px;
+}
+
+.my-drop-zone { border: dotted 3px lightgray; width: 100%; height: 200px;}
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }

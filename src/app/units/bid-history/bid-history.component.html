@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-lg-2">
+          <h3> Bid History</h3>
+      </div>
+
+
+  </div>
+  <div class="row mt-5">
+      <div class="col-lg-12">
+          <table style="width: 100%;" class=" table  table-sm  hover" datatable  [dtOptions]="dtOptions">
+              <thead >
+                  <tr>
+                      <th>Bidder Id</th>
+                      <th>Mobile#</th>
+                      <th>Bid Amount <i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+                      <th> Bid Placed Date<i class="fa fa-exchange-alt" style=' transform: rotate(90deg);'></i></th>
+
+                  </tr>
+              </thead>
+
+              <tbody  >
+                <tr *ngFor="let bidHistory of bidHistorys">
+                  <td>{{bidHistory.id}}</td>
+                 <td>{{bidHistory.mobile}}</td>
+                 <td>{{bidHistory.bid_amount}}</td>
+                 <td>{{bidHistory.created_on}}</td>
+
+                </tr>
+                <tr *ngIf="bidHistorys?.length == 0">
+                  <td colspan="3" class="no-data-available">No data!</td>
+              </tr>
+              </tbody>
+
+
+
+          </table>
+      </div>
+  </div>
+</div>

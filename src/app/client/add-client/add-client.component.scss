@@ -1,0 +1,41 @@
+
+.error
+{
+  color: red;
+}
+.button-save
+{
+  width: 80px;
+  height: 28px;
+  color: #fff;
+  background-color: rgb(255, 174, 0);
+border: rgb(255, 174, 0) solid 1px;
+border-radius: 5px;
+}
+.button-save[disabled]
+{
+
+  background-color: rgb(238, 204, 137);
+  border:  rgb(238, 204, 137)solid 1px;
+}
+.button-save:hover
+{
+  background-color: rgb(255, 154, 0) ;
+}
+.button-save:hover[disabled]
+{
+  background-color: rgb(238, 204, 137);
+}
+.button-cancel
+{
+  width: 80px;
+  height: 28px;
+  color: #fff;
+  background-color: rgb(71, 70, 68);
+  background-color: rgb(71, 70, 68) solid 1px;
+border-radius: 5px;
+}
+.button-cancel:hover
+{
+  background-color: rgb(48, 47, 46);
+}

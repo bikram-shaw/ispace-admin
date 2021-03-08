@@ -1,0 +1,48 @@
+
+<div class="container-fluid mt-1">
+
+
+    <div class="row">
+        <div class="col-4">
+            <h4>Subscription</h4>
+        </div>
+        <div class="col-lg-1">
+            <button class="button-save" routerLink='new'>Add New</button>
+        </div>
+    </div>
+        <div class="row mt-5">
+          <div class="col-lg-12 ">
+              <table style="width: 100%;"  class="table-sm table hover " datatable [dtOptions]="dtOptions">
+                  <thead>
+                      <tr>
+                          <th>Plan Name</th>
+                          <th>Frequency</th>
+                          <th>Price </th>
+                         <th></th>
+                      </tr>
+                  </thead>
+
+                  <tbody >
+                    <tr *ngFor="let sub of subs">
+                      <td>{{sub.plane_name}}</td>
+                     <td>{{sub.frequency}}</td>
+                     <td>{{sub.price}}</td>
+
+
+                     <td>
+                      <button class="btn  action-btn"> <i class="fa fa-edit mr-3"></i></button>
+
+                  </td>
+                    </tr>
+                    <tr *ngIf="subs?.length == 0">
+                      <td colspan="3" class="no-data-available">No data!</td>
+                  </tr>
+                  </tbody>
+
+
+
+              </table>
+          </div>
+      </div>
+    </div>
+

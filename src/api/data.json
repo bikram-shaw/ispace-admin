@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "name": "Ajay",
+      "email": "ajay@gmail.com",
+      "mobile": "987654321",
+      "cd":"12/11/2020"
+    },
+    {
+      "name": "Ajay",
+      "email": "ajay@gmail.com",
+      "mobile": "987654321",
+      "cd":"12/11/2020"
+
+    },
+    {
+      "name": "Ajay",
+      "email": "ajay@gmail.com",
+      "mobile": "987654321",
+      "cd":"12/11/2020"
+    }
+  ]
+}

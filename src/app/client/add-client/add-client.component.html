@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Add New Client</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+          <form [formGroup]="addClientForm" (ngSubmit)="collectData()">
+            <div class="mt-5">
+                <!-- Name -->
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="name" class="form-control form-control-sm" id="inputName" placeholder="">
+                        <div class="error" *ngIf="addClientFormControl.name.errors?.required && addClientFormControl.name.touched">Name is Required*</div>
+
+                    </div>
+                </div>
+                <!-- Address -->
+                <div class="form-group row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="address" class="form-control form-control-sm" id="inputAddress" placeholder="">
+                        <div class="error" *ngIf="addClientFormControl.address.errors?.required  && addClientFormControl.address.touched">Address is Required*</div>
+                    </div>
+                </div>
+                <!-- Mobile 1 -->
+                <div class="form-group row">
+                    <label for="inputMob1" class="col-sm-2 col-form-label">Mob1. #</label>
+                    <div class="col-sm-6">
+                        <input type="number" formControlName="mob1" class="form-control form-control-sm" id="inputMob1" placeholder="">
+                        <div class="error" *ngIf="addClientFormControl.mob1.errors?.required && addClientFormControl.mob1.touched">Mobile No is Required*</div>
+                        <div class="error" *ngIf="addClientFormControl.mob1.errors?.pattern && addClientFormControl.mob1.touched">Invalid Mobile No.</div>
+                    </div>
+                </div>
+                <!-- Mobile 2 -->
+                <div class="form-group row">
+                    <label for="inputMob2" class="col-sm-2 col-form-label">Mob2. #</label>
+                    <div class="col-sm-6">
+                        <input type="number" formControlName="mob2" class="form-control form-control-sm" id="inputMob2" placeholder="">
+                        <div class="error" *ngIf="addClientFormControl.mob2.errors?.required  && addClientFormControl.mob2.touched">Alternative Mobile No. is Required*</div>
+                        <div class="error" *ngIf="addClientFormControl.mob2.errors?.pattern && addClientFormControl.mob2.touched">Invalid Mobile No.</div>
+                    </div>
+                </div>
+                <!-- Email 1 -->
+                <div class="form-group row">
+                    <label for="inputEmail1" class="col-sm-2 col-form-label">Email 1</label>
+                    <div class="col-sm-6">
+                        <input type="email" formControlName="email1" class="form-control form-control-sm" id="inputEmail1" placeholder="">
+                        <div class="error" *ngIf="addClientFormControl.email1.errors?.required && addClientFormControl.email1.touched">Email is Required*</div>
+                        <div class="error" *ngIf="addClientFormControl.email1.errors?.pattern  && addClientFormControl.email1.touched">Invalid Email</div>
+                    </div>
+                </div>
+                <!-- Email 2 -->
+                <div class="form-group row">
+                    <label for="inputEmail2" class="col-sm-2 col-form-label">Email 2</label>
+                    <div class="col-sm-6">
+                        <input type="email" formControlName="email2" class="form-control form-control-sm" id="inputEmail2" placeholder="">
+                        <div class="error" *ngIf="addClientFormControl.email2.errors?.required && addClientFormControl.email2.touched">Email is Required*</div>
+                        <div class="error" *ngIf="addClientFormControl.email2.errors?.pattern  && addClientFormControl.email2.touched">Invalid Email</div>
+                    </div>
+                </div>
+                <!-- Contact Person Name 1 -->
+                <div class="form-group row">
+                    <label for="inputCpn1" class="col-sm-3 col-form-label">Contact Person Name</label>
+                    <div class="col-sm-5">
+                        <input type="text" formControlName="cpn1" class="form-control form-control-sm" id="inputCpn1" placeholder="">
+                        <span class="error" *ngIf="addClientFormControl.cpn1.errors?.required  && addClientFormControl.cpn1.touched">Contact Person Name is Required*</span>
+                    </div>
+                </div>
+                <!-- Contact personName 2 -->
+                <div class="form-group row">
+                    <label for="inputCpn2" class="col-sm-3 col-form-label">Contact Person Name</label>
+                    <div class="col-sm-5">
+                        <input type="text" formControlName="cpn2" class="form-control form-control-sm" id="inputCpn2" placeholder="">
+                        <span class="error" *ngIf="addClientFormControl.cpn2.errors?.required  && addClientFormControl.cpn2.touched">Contact Person Name is Required*</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <div class=" float-right">
+                        <button class="button-cancel mr-4">Cancel</button>
+                        <button [disabled]="addClientForm.invalid"  class="button-save">Save</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

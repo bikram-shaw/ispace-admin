@@ -1,0 +1,18 @@
+<div>
+  <div class="row mt-2 mb-2">
+    <div class="col-4">
+        <h4>Notification</h4>
+    </div>
+</div>
+<div >
+  <ul>
+    <li><a id="settingsId" [routerLinkActive]="['active']"  routerLink="settings">Settings</a></li>
+    <li><a [routerLinkActive]="['active']" routerLink="email">Email</a></li>
+    <li><a [routerLinkActive]="['active']" routerLink="sms">Sms</a></li>
+    <li><a [routerLinkActive]="['active']" routerLink="push">Push Notification</a></li>
+  </ul>
+
+
+</div>
+<router-outlet></router-outlet>
+</div>

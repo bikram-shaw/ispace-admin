@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+
+    <div class="row mt-4">
+        <div class="col-lg-1">
+            <h4>Users</h4>
+        </div>
+        <div class="col-5">
+          <div class="text-right">
+            <button class="button-save" routerLink='new'>Add</button>
+          </div>
+
+       </div>
+    </div>
+        <div class="row mt-5">
+          <div class="col-lg-12">
+              <table style="width: 100%;"  class="table-sm table hover" datatable [dtOptions]="dtOptions">
+                  <thead >
+                      <tr>
+                          <th>Email</th>
+                          <th>User Type</th>
+                          <th>Mobile</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+
+                  <tbody >
+                    <tr *ngFor="let user of users">
+                       <td>{{user.email}}</td>
+                       <td>{{user.user_type}}</td>
+                       <td>{{user.profile.mobile}}</td>
+
+                     <td>
+                      <button class="btn  action-btn" routerLink="edit/{{user.id}}"> <i class="fa fa-edit mr-3"></i></button>
+
+                  </td>
+                    </tr>
+                    <tr *ngIf="users?.length == 0">
+                      <td colspan="3" class="no-data-available">No data!</td>
+                  </tr>
+                  </tbody>
+
+
+
+              </table>
+          </div>
+      </div>
+    </div>
+
+

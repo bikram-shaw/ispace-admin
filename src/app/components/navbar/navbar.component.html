@@ -1,0 +1,45 @@
+<!-- <button class="btn btn-primary" id="menu-toggle" (click)="_toggleSidebar()">Toggle Menu</button> -->
+
+<ng-sidebar-container>
+    <!-- A sidebar -->
+    <ng-sidebar [(opened)]="opened" mode='push'>
+
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                <img src='../assets/images/ispace.jpg' class="img-fluid" >
+            </div>
+            <div class="sidebar-body">
+                <button class="sidebar-item" routerLink='/dashboard' routerLinkActive="active"
+                    routerLinkOptions={exact:true}><i class=" fa fa-chart-bar"></i>
+                    Dashboard</button>
+                <!--button class="sidebar-item" routerLink='/client' routerLinkActive="active"><i
+                    class=" fa fa-layer-group"></i> Client</button><br-->
+                <button class="sidebar-item" routerLink='/projects' routerLinkActive="active"><i
+                        class=" fa fa-building"></i>
+                    Projects</button>
+
+                <button class="sidebar-item" routerLink='/units' routerLinkActive="active"><i
+                        class=" fa fa-layer-group"></i> Units</button>
+                <!-- <button class="sidebar-item" routerLink='/bid' routerLinkActive="active"><i class=" fa fa-users"></i>
+                    Bid</button>
+                <button class="sidebar-item" routerLink='/booking' routerLinkActive="active"><i class=" fa fa-poll-h"></i>
+                Booking</button> -->
+                <button class="sidebar-item" routerLink='/users' routerLinkActive="active"><i class=" fa fa-user"></i>
+                    Users</button>
+                    <button class="sidebar-item" routerLink='/subscription' routerLinkActive="active"><i class="fas fa-grip-horizontal"></i>
+                    Subscription</button>
+                    <button class="sidebar-item" routerLink='/notification/settings' routerLinkActive="active"><i class="fas fa-bell"></i>
+                      Notification</button>
+                <!--button class="sidebar-item" routerLink='/publish' routerLinkActive="active"><i class=" fa fa-user"></i>
+                Publish</button>
+            <button class="sidebar-item" routerLink='/Notifications' routerLinkActive="active"><i
+                    class=" fa fa-bell"></i>
+                Notifications</button><br-->
+                <button class="sidebar-item" routerLink='/Setting' routerLinkActive="active"><i class=" fa fa-cog"></i>
+                    Setting</button>
+
+            </div>
+        </div>
+
+    </ng-sidebar>
+</ng-sidebar-container>

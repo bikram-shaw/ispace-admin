@@ -1,0 +1,44 @@
+.color-container
+{
+  height: 120px;
+  background-color: #2DDBDB;
+  position: relative;
+}
+.lineChart-container
+{
+   position: absolute;
+   top: 0;
+
+}
+.stack-top{
+  z-index: 9;
+ /* for demo purpose  */
+ margin-left: 3px;
+}
+.card-body
+{
+  padding: 0.10rem;
+  margin-right: 9px;
+  margin-left: 9px;
+  margin-top: 15px;
+  border: 2px solid pink;
+  border-radius: 19px;
+}
+.font-body1
+{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(109, 103, 103);
+  margin-left: 3%;
+}
+.font-body2
+{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(109, 103, 103);
+  margin-right: 3%;
+}
+.card{
+   border-radius: 10px;
+   border: 1px solid rgb(223, 211, 211);
+}

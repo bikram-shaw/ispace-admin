@@ -1,0 +1,169 @@
+<div class="row color-container">
+<!-- Line Charts -->
+<div class="row lineChart-container stack-top" >
+
+<!-- unit line chart -->
+  <div class="card m-2">
+    <div class="card-img-top px-2 pt-1" >
+
+        <span class="float-left font-weight-normal">Units</span>
+        <span class="float-right">500</span>
+
+    </div>
+    <div class="card-body" style="border-color: rgba(164,72,187,0.6);">
+      <span class="float-left font-body1">Listing Units</span>
+      <span class="float-right font-body2">400</span>
+      </div>
+    <div class="mx-1 mb-1"  >
+      <canvas  baseChart height="50" width="260"
+      [datasets]="unitlineChartData"
+      [labels]="unitlineChartLabels"
+      [options]="unitlineChartOptions"
+      [colors]="unitlineChartColors"
+      [legend]="unitlineChartLegend"
+      [chartType]="unitlineChartType"
+      [plugins]="unitlineChartPlugins">
+    </canvas>
+    </div>
+  </div>
+<!-- bidders -->
+  <div class="card m-2">
+    <div class="card-img-top px-2 pt-1" >
+
+        <span class="float-left font-weight-normal">Bidders</span>
+        <span class="float-right">10000000</span>
+
+    </div>
+    <div class="card-body" style="border-color: #84bef3;">
+      <span class="float-left font-body1">Last Month</span>
+      <span class="float-right font-body2">400</span>
+      </div>
+    <div class="mx-1 mb-1"  >
+      <canvas  baseChart height="50" width="260"
+      [datasets]="bidderslineChartData"
+      [labels]="bidderslineChartLabels"
+      [options]="bidderslineChartOptions"
+      [colors]="bidderslineChartColors"
+      [legend]="bidderslineChartLegend"
+      [chartType]="bidderslineChartType"
+      [plugins]="bidderslineChartPlugins">
+    </canvas>
+    </div>
+  </div>
+<!-- booked -->
+  <div class="card m-2">
+    <div class="card-img-top px-2 pt-1" >
+
+        <span class="float-left font-weight-normal">Booked</span>
+        <span class="float-right">100</span>
+
+    </div>
+    <div class="card-body" >
+      <span class="float-left font-body1">Last Month</span>
+      <span class="float-right font-body2">10</span>
+      </div>
+    <div class="mx-1 mb-1"  >
+      <canvas  baseChart height="50" width="260"
+      [datasets]="bookedlineChartData"
+      [labels]="bookedlineChartLabels"
+      [options]="bookedlineChartOptions"
+      [colors]="bookedlineChartColors"
+      [legend]="bookedlineChartLegend"
+      [chartType]="bookedlineChartType"
+      [plugins]="bookedlineChartPlugins">
+    </canvas>
+    </div>
+  </div>
+<!-- vistors -->
+  <div class="card m-2">
+    <div class="card-img-top px-2 pt-1" >
+
+        <span class="float-left font-weight-normal">Visitors</span>
+        <span class="float-right">10000000</span>
+
+    </div>
+    <div class="card-body" style="border-color: #8af1d2;">
+      <span class="float-left font-body1">Last Month</span>
+      <span class="float-right font-body2">400</span>
+      </div>
+    <div class="mx-1 mb-1"  >
+      <canvas  baseChart height="50" width="260"
+      [datasets]="vistorslineChartData"
+      [labels]="vistorslineChartLabels"
+      [options]="vistorslineChartOptions"
+      [colors]="vistorslineChartColors"
+      [legend]="vistorslineChartLegend"
+      [chartType]="vistorslineChartType"
+      [plugins]="vistorslineChartPlugins">
+    </canvas>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 3%;">
+<div class="col-sm-4">
+<!-- Bar Chart -->
+<div class="row" >
+  <div class="col-sm-12">
+    <div class="card" style="display: block;">
+      <h6 class="card-subtitle my-2   text-center" >Active Bidder vs Visiter</h6>
+      <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+    [colors]="barChartColors"
+    >
+  </canvas>
+    </div>
+  </div>
+</div>
+<!-- Pie chart -->
+<div class="row mt-3">
+  <div class="col-sm-12">
+    <div class="card" style="display: block;">
+      <h6 class="card-subtitle my-2  text-center" >Biddings vs Bookings vs Visitings </h6>
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>
+</div>
+<!-- booking History table -->
+<div class="col-sm-8">
+  <div class="card">
+  <h6 class="card-subtitle my-2 text-center" >Booking History</h6>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Project Name</th>
+        <th>Unit Name</th>
+        <th>User Name</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let history of bookHistory;index as i">
+        <th>{{bookHistory[i].project_name}}</th>
+        <td>{{bookHistory[i].unit_name}}</td>
+        <td>{{bookHistory[i].user_mobile}}</td>
+        <td>{{bookHistory[i].date}}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+

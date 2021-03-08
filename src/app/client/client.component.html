@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>Client</h3>
+        </div>
+        <div class="col-lg-4">
+            <button class="button-save" routerLink='add-client'>Add</button>
+        </div>
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12">
+        <table style="width: 100%;" class=" table  table-sm  hover" datatable [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mob</th>
+                <th>Create Date</th>
+                <th>Action Item</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let person of persons">
+                <td>{{ person.name }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.mobile }}</td>
+                <td>{{ person.cd }}</td>
+                <td><button  class="btn  action-btn"> <i class="fa fa-edit"></i></button></td>
+            </tr>
+            <tr *ngIf="persons?.length == 0">
+                <td colspan="3" class="no-data-available">No data!</td>
+            </tr>
+        </tbody>
+        </table>
+
+
+
+        </div>
+    </div>
+</div>
